@@ -1,6 +1,13 @@
 custom:
 
   # Cluster configs for each environment
+  # For dev and staging (AWS)
+  default-cluster-spec-dev-staging: &default-cluster-spec-dev-staging
+    spark_version: '11.0.x-cpu-ml-scala2.12'
+    node_type_id: 'i3.xlarge'
+    driver_node_type_id: 'i3.xlarge'
+    num_workers: 1
+
   default-cluster-spec: &default-cluster-spec
     spark_version: '11.0.x-cpu-ml-scala2.12'
     # node_type_id: 'i3.xlarge'
@@ -18,11 +25,11 @@ custom:
 
   dev-cluster-config: &dev-cluster-config
     new_cluster:
-      <<: *default-cluster-spec
+      <<: *default-cluster-spec-dev-staging
 
   staging-cluster-config: &staging-cluster-config
     new_cluster:
-      <<: *default-cluster-spec
+      <<: *default-cluster-spec-dev-staging
 
   prod-cluster-config: &prod-cluster-config
     new_cluster:
